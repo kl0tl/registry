@@ -25,6 +25,9 @@ let TargetType =
       -- we can specify here the command for the alternate backend.
       -- Example values: `psgo`, `pskt`, etc.
       , backend : Optional Text
+      -- A mapping between native package names and their versions in a format
+      -- understood by the backend specific tool used to install them.
+      , nativeDependencies : Map Text Text
       }
 
 let default =
@@ -32,6 +35,7 @@ let default =
       , sources = [] : List Text
       , output = None Text
       , backend = None Text
+      , nativeDependencies = (toMap {=}) : Map Text Text
       }
 
 in  { default = default, Type = TargetType }
